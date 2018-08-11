@@ -1,4 +1,4 @@
-from flask import Flask, jsonify, request
+from flask import Flask, jsonify, request, render_template
 from random import *
 from flask_cors import CORS
 import requests
@@ -21,8 +21,8 @@ models.db.init_app(app)
 @app.route('/<path:path>')
 def catch_all(path):
     if app.debug:
-        return requests.get('http://localhost:8080/{}'.format(path)).text
-    return render_template("dist/index.html")
+        return requests.get('0.0.0.0:81/{}'.format(path)).text
+    return render_template("index.html")
 
 
 
@@ -127,3 +127,6 @@ def getDataAll(device_id, sensor_id):
         }
         results.append(obj)
     return jsonify(results)
+
+if __name__ == "__main__":
+    app.run(host='0.0.0.0', port=81)
