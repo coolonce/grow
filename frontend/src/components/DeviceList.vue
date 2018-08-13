@@ -17,10 +17,10 @@ export default{
   name: 'device-list',
   data () {
     return {
-      devices: []
+      devices: [{id:1,name_owner: 'test'}]
     }
   },
-  created () {
+  /*created () {
     const path = `http://localhost:5000/api/device`
     axios.get(path)
       .then(response => {
@@ -30,7 +30,7 @@ export default{
       .catch(error => {
         console.log(error)
       })
-  },
+  },*/
   mounted: function () {
     console.log('mounted')
   },
