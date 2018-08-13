@@ -8,7 +8,7 @@ bin-release/
 backend/
 __pycache__
 dist/
-../.idea/
+.idea/
 package-lock.json
 # Other files and folders
 .settings/
