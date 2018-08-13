@@ -14,7 +14,7 @@ require('./assets/other/libs/fancybox-master/jquery.fancybox.min.css')
 
 
 Vue.use(Common)
-
+//Vue.use(fancyBox)
 //Vue.use(mousewheel)
 
 Vue.config.productionTip = false
