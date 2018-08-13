@@ -350,7 +350,7 @@ header .title .close_statistic:focus .hover {
     position: absolute;
     top: 10px;
     left: 10px;
-    background-image: url(../img/fullscreen.png);
+    background-image: url(/static/img/fullscreen.png);
     -webkit-background-size: cover;
     background-size: cover;
     background-position: center;

@@ -29,8 +29,8 @@
                     <div class="table_content table_item" id="table_content">
                         <div class="column">
                             <div class="row" data-row="row_1">
-                                <button class="button top change_name"><img src="img/comment_img.png" alt=""></button>
-                                <a href="/statistics" class="button bottom statistics_open"><img src="img/statistics_img.png" alt=""></a> Устройство 1
+                                <button class="button top change_name"><img src="/static/img/comment_img.png" alt=""></button>
+                                <a href="/statistics" class="button bottom statistics_open"><img src="/static/img/statistics_img.png" alt=""></a> Устройство 1
                             </div>
                             <div class="row" data-row="row_2"></div>
                             <div class="row" data-row="row_3"></div>
@@ -46,12 +46,12 @@
                             <div class="row" data-row="row_13"></div>
                             <div class="row" data-row="row_14"></div>
                             <div class="row" data-row="row_15">
-                                <a href="img/img1.jpg" data-fancybox="gallery" class="image_overlay">
-                                    <img src="img/img1.jpg" alt="">
+                                <a href="/static/img/img1.jpg" data-fancybox="gallery" class="image_overlay">
+                                    <img src="/static/img/img1.jpg" alt="">
                                 </a>
                             </div>
                             <div class="row" data-row="row_16">
-                                <button class="button top comment_open"><img src="img/comment_img.png" alt=""></button>
+                                <button class="button top comment_open"><img src="/static/img/comment_img.png" alt=""></button>
                                 <p class="comment_text">
                                     Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamco.
                                 </p>
@@ -59,8 +59,8 @@
                         </div>
                         <div class="column">
                             <div class="row" data-row="row_1">
-                                <button class="button top change_name"><img src="img/comment_img.png" alt=""></button>
-                                <a href="/statistics" class="button bottom statistics_open"><img src="img/statistics_img.png" alt=""></a> Устройство 2
+                                <button class="button top change_name"><img src="/static/img/comment_img.png" alt=""></button>
+                                <a href="/statistics" class="button bottom statistics_open"><img src="/static/img/statistics_img.png" alt=""></a> Устройство 2
                             </div>
                             <div class="row" data-row="row_2"></div>
                             <div class="row" data-row="row_3"></div>
@@ -76,12 +76,12 @@
                             <div class="row" data-row="row_13"></div>
                             <div class="row" data-row="row_14"></div>
                             <div class="row" data-row="row_15">
-                                <a href="img/img2.jpg" data-fancybox="gallery" class="image_overlay">
-                                    <img src="img/img2.jpg" alt="">
+                                <a href="/static/img/img2.jpg" data-fancybox="gallery" class="image_overlay">
+                                    <img src="/static/img/img2.jpg" alt="">
                                 </a>
                             </div>
                             <div class="row" data-row="row_16">
-                                <button class="button top comment_open"><img src="img/comment_img.png" alt=""></button>
+                                <button class="button top comment_open"><img src="/static/img/comment_img.png" alt=""></button>
                                 <p class="comment_text">
                                     Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamco.
                                 </p>
@@ -89,8 +89,8 @@
                         </div>
                         <div class="column">
                             <div class="row" data-row="row_1">
-                                <button class="button top change_name"><img src="img/comment_img.png" alt=""></button>
-                                <a href="/statistics" class="button bottom statistics_open"><img src="img/statistics_img.png" alt=""></a> Устройство 3
+                                <button class="button top change_name"><img src="/static/img/comment_img.png" alt=""></button>
+                                <a href="/statistics" class="button bottom statistics_open"><img src="/static/img/statistics_img.png" alt=""></a> Устройство 3
                             </div>
                             <div class="row" data-row="row_2"></div>
                             <div class="row" data-row="row_3"></div>
@@ -106,12 +106,12 @@
                             <div class="row" data-row="row_13"></div>
                             <div class="row" data-row="row_14"></div>
                             <div class="row" data-row="row_15">
-                                <a href="img/img3.jpg" data-fancybox="gallery" class="image_overlay">
-                                    <img src="img/img3.jpg" alt="">
+                                <a href="/static/img/img3.jpg" data-fancybox="gallery" class="image_overlay">
+                                    <img src="/static/img/img3.jpg" alt="">
                                 </a>
                             </div>
                             <div class="row" data-row="row_16">
-                                <button class="button top comment_open"><img src="img/comment_img.png" alt=""></button>
+                                <button class="button top comment_open"><img src="/static/img/comment_img.png" alt=""></button>
                                 <p class="comment_text">
                                     Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamco.
                                 </p>
@@ -119,8 +119,8 @@
                         </div>
                         <div class="column">
                             <div class="row" data-row="row_1">
-                                <button class="button top change_name"><img src="img/comment_img.png" alt=""></button>
-                                <a href="/statistics" class="button bottom statistics_open"><img src="img/statistics_img.png" alt=""></a> Устройство 4
+                                <button class="button top change_name"><img src="/static/img/comment_img.png" alt=""></button>
+                                <a href="/statistics" class="button bottom statistics_open"><img src="/static/img/statistics_img.png" alt=""></a> Устройство 4
                             </div>
                             <div class="row" data-row="row_2"></div>
                             <div class="row" data-row="row_3"></div>
@@ -136,12 +136,12 @@
                             <div class="row" data-row="row_13"></div>
                             <div class="row" data-row="row_14"></div>
                             <div class="row" data-row="row_15">
-                                <a href="img/img4.jpg" data-fancybox="gallery" class="image_overlay">
-                                    <img src="img/img4.jpg" alt="">
+                                <a href="/static/img/img4.jpg" data-fancybox="gallery" class="image_overlay">
+                                    <img src="/static/img/img4.jpg" alt="">
                                 </a>
                             </div>
                             <div class="row" data-row="row_16">
-                                <button class="button top comment_open"><img src="img/comment_img.png" alt=""></button>
+                                <button class="button top comment_open"><img src="/static/img/comment_img.png" alt=""></button>
                                 <p class="comment_text">
                                     Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamco.
                                 </p>
@@ -149,8 +149,8 @@
                         </div>
                         <div class="column">
                             <div class="row" data-row="row_1">
-                                <button class="button top change_name"><img src="img/comment_img.png" alt=""></button>
-                                <a href="/statistics" class="button bottom statistics_open"><img src="img/statistics_img.png" alt=""></a> Устройство 5
+                                <button class="button top change_name"><img src="/static/img/comment_img.png" alt=""></button>
+                                <a href="/statistics" class="button bottom statistics_open"><img src="/static/img/statistics_img.png" alt=""></a> Устройство 5
                             </div>
                             <div class="row" data-row="row_2"></div>
                             <div class="row" data-row="row_3"></div>
@@ -166,12 +166,12 @@
                             <div class="row" data-row="row_13"></div>
                             <div class="row" data-row="row_14"></div>
                             <div class="row" data-row="row_15">
-                                <a href="img/img1.jpg" data-fancybox="gallery" class="image_overlay">
-                                    <img src="img/img1.jpg" alt="">
+                                <a href="/static/img/img1.jpg" data-fancybox="gallery" class="image_overlay">
+                                    <img src="/static/img/img1.jpg" alt="">
                                 </a>
                             </div>
                             <div class="row" data-row="row_16">
-                                <button class="button top comment_open"><img src="img/comment_img.png" alt=""></button>
+                                <button class="button top comment_open"><img src="/static/img/comment_img.png" alt=""></button>
                                 <p class="comment_text">
                                     Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamco.
                                 </p>
@@ -179,8 +179,8 @@
                         </div>
                         <div class="column">
                             <div class="row" data-row="row_1">
-                                <button class="button top change_name"><img src="img/comment_img.png" alt=""></button>
-                                <a href="/statistics" class="button bottom statistics_open"><img src="img/statistics_img.png" alt=""></a> Устройство 6
+                                <button class="button top change_name"><img src="/static/img/comment_img.png" alt=""></button>
+                                <a href="/statistics" class="button bottom statistics_open"><img src="/static/img/statistics_img.png" alt=""></a> Устройство 6
                             </div>
                             <div class="row" data-row="row_2"></div>
                             <div class="row" data-row="row_3"></div>
@@ -196,18 +196,18 @@
                             <div class="row" data-row="row_13"></div>
                             <div class="row" data-row="row_14"></div>
                             <div class="row" data-row="row_15">
-                                <a href="img/img2.jpg" data-fancybox="gallery" class="image_overlay">
-                                    <img src="img/img2.jpg" alt="">
+                                <a href="/static/img/img2.jpg" data-fancybox="gallery" class="image_overlay">
+                                    <img src="/static/img/img2.jpg" alt="">
                                 </a>
                             </div>
                             <div class="row" data-row="row_16">
-                                <button class="button top comment_open"><img src="img/comment_img.png" alt=""></button>
+                                <button class="button top comment_open"><img src="/static/img/comment_img.png" alt=""></button>
                                 <p class="comment_text">
                                     Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamco.
                                 </p>
                             </div>
                         </div>
-                        <button class="arrow" id="slide_left"><img src="img/arrow_right.png" alt=""></button>
+                        <button class="arrow" id="slide_left"><img src="/static/img/arrow_right.png" alt=""></button>
                     </div>
                 </div>
             </div>
@@ -215,7 +215,7 @@
     </section>
 
     <div class="modal" id="modal">
-        <div class="close_modal"><img src="img/close_modal.png" alt=""></div>
+        <div class="close_modal"><img src="/static/img/close_modal.png" alt=""></div>
         <div class="title"><span>Уровень PH</span></div>
         <form>
             <div class="modal_content">
@@ -228,7 +228,7 @@
                     <div class="sort_select">
                         <div class="sort_option" data-custom="Device1">
                             <span class="text">Устройство 1</span>
-                            <span class="arrow"><img src="img/select_button.png" alt=""></span>
+                            <span class="arrow"><img src="/static/img/select_button.png" alt=""></span>
                         </div>
                         <ul class="sort_options">
                             <li data-custom="Device1">Устройство 1</li>
@@ -248,7 +248,7 @@
     </div>
 
     <div class="modal" id="modal_comment">
-        <div class="close_modal"><img src="img/close_modal.png" alt=""></div>
+        <div class="close_modal"><img src="/static/img/close_modal.png" alt=""></div>
         <div class="title"><span>Комментарий</span></div>
         <form>
             <div class="modal_content">
@@ -261,7 +261,7 @@
     </div>
 
     <div class="modal" id="modal_change_name">
-        <div class="close_modal"><img src="img/close_modal.png" alt=""></div>
+        <div class="close_modal"><img src="/static/img/close_modal.png" alt=""></div>
         <div class="title"><span>Изменить название</span></div>
         <form>
             <div class="modal_content">
