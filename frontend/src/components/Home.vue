@@ -33,8 +33,8 @@
                                 <div class="row" data-row="row_1">
                                     <button class="button top change_name"><img src="/static/img/comment_img.png"
                                                                                 alt=""></button>
-                                    <a href="/statistics" class="button bottom statistics_open"><img
-                                            src="/static/img/statistics_img.png" alt=""></a> {{device.name}}
+                                    <a v-bind:href="'/statistics/' +device.id" class="button bottom statistics_open"><img
+                                            src="/static/img/statistics_img.png" alt=""></a> {{device.name_owner}}
                                 </div>
                                 <div class="row" data-row="row_2"></div>
                                 <div class="row" data-row="row_3"></div>
@@ -84,31 +84,33 @@
         name: 'device-list',
         data () {
             return {
-                devices: [{id: 1, name: 'Устройство 1'},{id: 2, name: 'Устройство 2'}]
+                devices: [{id: 1, name: 'Устройство 1'}, {id: 2, name: 'Устройство 2'}]
 
             }
         },
-        /*created () {
-         const path = `http://localhost:5000/api/device`
-         axios.get(path)
-         .then(response => {
-         console.log(response)
-         this.devices = response.data
-         })
-         .catch(error => {
-         console.log(error)
-         })
-         },*/
         mounted: function () {
             console.log('mounted')
         },
-        created: function(){
-            $(function($) {
-                $(".table_box .left_column").each(function() {
+        created: function () {
+
+            const path = `http://lerts91.fvds.ru/api/device`;
+            console.log("created");
+            axios.get(path).then(response => {
+                console.log(response.data)
+                this.devices = response.data
+            }).
+                catch(error => {
+                    console.log(error);
+            })
+
+
+
+            $(function ($) {
+                $(".table_box .left_column").each(function () {
                     var length = $(this).find('.row').length;
                     for (var i = 1; i < length + 1; i++) {
                         var max_col_height = 0;
-                        $('[data-row="row_' + i + '"]').each(function() {
+                        $('[data-row="row_' + i + '"]').each(function () {
                             if ($(this).height() > max_col_height) {
                                 max_col_height = $(this).height();
                             }
