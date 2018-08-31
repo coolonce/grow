@@ -76,7 +76,8 @@ def devices():
 
 @app.route('/api/sendData', methods=['POST'])
 def getDataInOrange():
-	return request.data
+	data = request.data
+	return "Server"
 		
 @app.route('/api/sensor', methods=['POST', 'GET'])
 def sensors():
@@ -129,5 +130,6 @@ def getDataAll(device_id, sensor_id):
         }
         results.append(obj)
     return jsonify(results)
+
 if __name__=="__main__":
-    app.run(host='0.0.0.0', port=80, debug=0)
+    app.run(host='0.0.0.0', port=5000, debug=0)
