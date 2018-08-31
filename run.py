@@ -76,6 +76,10 @@ def devices():
     else:
         return "error"
 
+@app.route('/api/sendData', methods=['POST'])
+def getDataInOrange():
+	return request.data
+		
 @app.route('/api/sensor', methods=['POST', 'GET'])
 def sensors():
     if request.method == "GET":
