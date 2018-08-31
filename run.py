@@ -22,15 +22,13 @@ models.db.init_app(app)
 def catch_all(path):
     if app.debug:
         return requests.get('http://localhost:8080/{}'.format(path)).text
-    return render_template("dist/index.html")
+    return render_template("index.html")
 
 
 
 
 
-@app.route('/')
-def home():
-    return "Start page"
+
 
 
 @app.route('/api/random')
