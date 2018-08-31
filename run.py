@@ -131,3 +131,5 @@ def getDataAll(device_id, sensor_id):
         }
         results.append(obj)
     return jsonify(results)
+if __name__=="__main__":
+    app.run(host='0.0.0.0', port=80, debug=0)
