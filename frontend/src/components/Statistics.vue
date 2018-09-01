@@ -6,9 +6,10 @@
                 <div class="title">
                     <h1 class="h1">Статистика: <span>Устройство 1</span></h1>
                     <div class="close_statistic">
-                        <!--<img class="normal" src="/static/img/close_statistic.png" alt="">-->
-                        <router-link to="/">X</router-link>
-                        <!--<img class="hover" src="/static/img/close_statistic_hover.png" alt="">-->
+                        <router-link to="/#main">
+                            <img class="normal" src="/static/img/close_statistic.png" alt="">
+                            <img class="hover" src="/static/img/close_statistic_hover.png" alt="">
+                        </router-link>
                     </div>
                 </div>
             </div>
@@ -18,89 +19,57 @@
                 <div class="statistics_change">
 
                     <div class="element">
-                        <span>Ч-сть обновления данных:</span>
-                        <div class="sort_select">
-                            <div class="sort_option" data-custom="Device1">
-                                <span class="text">Показатель 1</span>
-                                <span class="arrow"><img src="/static/img/select_button.png" alt=""></span>
-                            </div>
-                            <ul class="sort_options">
-                                <li data-custom="Device1">Показатель 1</li>
-                                <li data-custom="Device2">Показатель 2</li>
-                                <li data-custom="Device3">Показатель 3</li>
-                                <li data-custom="Device4">Показатель 4</li>
-                                <li data-custom="Device4">Показатель 5</li>
-                                <li data-custom="Device4">Показатель 6</li>
-                            </ul>
-                        </div>
+                        <span>Ч-сть обновления данных (мин.):</span>
+                        <input type="text" name="Показатель" v-model="updatePhoto">
+
                     </div>
                     <div class="element">
-                        <span>Ч-сть полива линии 1:</span>
-                        <div class="sort_select">
-                            <div class="sort_option" data-custom="Device1">
-                                <span class="text">Показатель 1</span>
-                                <span class="arrow"><img src="/static/img/select_button.png" alt=""></span>
-                            </div>
-                            <ul class="sort_options">
-                                <li data-custom="Device1">Показатель 1</li>
-                                <li data-custom="Device2">Показатель 2</li>
-                                <li data-custom="Device3">Показатель 3</li>
-                                <li data-custom="Device4">Показатель 4</li>
-                                <li data-custom="Device4">Показатель 5</li>
-                                <li data-custom="Device4">Показатель 6</li>
-                            </ul>
-                        </div>
+                        <span>Длительность подсветки(часы):</span>
+                        <input type="text" name="Показатель" v-model="timeOnLed">
+
                     </div>
-                    <div class="element">
-                        <span>Ч-сть полива линии 2:</span>
-                        <div class="sort_select">
-                            <div class="sort_option" data-custom="Device1">
-                                <span class="text">Показатель 1</span>
-                                <span class="arrow"><img src="/static/img/select_button.png" alt=""></span>
-                            </div>
-                            <ul class="sort_options">
-                                <li data-custom="Device1">Показатель 1</li>
-                                <li data-custom="Device2">Показатель 2</li>
-                                <li data-custom="Device3">Показатель 3</li>
-                                <li data-custom="Device4">Показатель 4</li>
-                                <li data-custom="Device4">Показатель 5</li>
-                                <li data-custom="Device4">Показатель 6</li>
-                            </ul>
-                        </div>
-                    </div>
+                    <!--<div class="element">-->
+                        <!--<span>Ч-сть полива линии 2:</span>-->
+                        <!--<div class="sort_select">-->
+                            <!--<div class="sort_option" data-custom="Device1">-->
+                                <!--<span class="text">Показатель 1</span>-->
+                                <!--<span class="arrow"><img src="/static/img/select_button.png" alt=""></span>-->
+                            <!--</div>-->
+                            <!--<ul class="sort_options">-->
+                                <!--<li data-custom="Device1">Показатель 1</li>-->
+                                <!--<li data-custom="Device2">Показатель 2</li>-->
+                                <!--<li data-custom="Device3">Показатель 3</li>-->
+                                <!--<li data-custom="Device4">Показатель 4</li>-->
+                                <!--<li data-custom="Device4">Показатель 5</li>-->
+                                <!--<li data-custom="Device4">Показатель 6</li>-->
+                            <!--</ul>-->
+                        <!--</div>-->
+                    <!--</div>-->
                     <div class="element">
                         <span>Ч-сть фотографирования:</span>
-                        <div class="sort_select">
-                            <div class="sort_option" data-custom="Device1">
-                                <span class="text">Показатель 1</span>
-                                <span class="arrow"><img src="/static/img/select_button.png" alt=""></span>
-                            </div>
-                            <ul class="sort_options">
-                                <li data-custom="Device1">Показатель 1</li>
-                                <li data-custom="Device2">Показатель 2</li>
-                                <li data-custom="Device3">Показатель 3</li>
-                                <li data-custom="Device4">Показатель 4</li>
-                                <li data-custom="Device4">Показатель 5</li>
-                                <li data-custom="Device4">Показатель 6</li>
-                            </ul>
-                        </div>
+                        <input type="text" name="Показатель" v-model="refreshData">
                     </div>
+
+                    <!--<div class="element">-->
+                        <!--<span>культура 1:</span>-->
+                        <!--<input type="text" name="Показатель">-->
+                    <!--</div>-->
+                    <!--<div class="element">-->
+                        <!--<span>культура 2:</span>-->
+                        <!--<input type="text" name="Показатель">-->
+                    <!--</div>-->
+                    <!--<div class="element">-->
+                        <!--<span>сорт 1:</span>-->
+                        <!--<input type="text" name="Показатель">-->
+                    <!--</div>-->
+                    <!--<div class="element">-->
+                        <!--<span>сорт 2:</span>-->
+                        <!--<input type="text" name="Показатель">-->
+                    <!--</div>-->
                     <div class="element">
-                        <span>культура 1:</span>
-                        <input type="text" name="Показатель">
+                        <input type="submit" class="add_table" value="Обновить" :click="updateConfig()" style="height: 50px;">
                     </div>
-                    <div class="element">
-                        <span>культура 2:</span>
-                        <input type="text" name="Показатель">
-                    </div>
-                    <div class="element">
-                        <span>сорт 1:</span>
-                        <input type="text" name="Показатель">
-                    </div>
-                    <div class="element">
-                        <span>сорт 2:</span>
-                        <input type="text" name="Показатель">
-                    </div>
+
                 </div>
             </div>
         </section>
@@ -121,8 +90,8 @@
                             <div class="row" data-row="row_10">Температура воздуха:</div>
                             <div class="row" data-row="row_11">Влажность воздуха:</div>
                             <div class="row" data-row="row_12">Расход электроэнергии:</div>
-                            <div class="row" data-row="row_13">Уровень PH </div>
-                            <div class="row" data-row="row_14">Уровень TDS </div>
+                            <div class="row" data-row="row_13">Уровень PH</div>
+                            <div class="row" data-row="row_14">Уровень TDS</div>
                             <div class="row" data-row="row_15">Фото:</div>
                             <div class="row" data-row="row_16">Комментарий:</div>
                         </div>
@@ -152,14 +121,17 @@
                                 <div class="row" data-row="row_16">
 
                                     <p class="comment_text">
-                                        Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamco.
+                                        Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh
+                                        euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad
+                                        minim veniam, quis nostrud exerci tation ullamco.
                                     </p>
                                     <p class="comment_text">
                                         Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh.
                                     </p>
                                 </div>
                             </div>
-                            <button class="arrow" id="slide_left"><img src="/static/img/arrow_right.png" alt=""></button>
+                            <button class="arrow" id="slide_left"><img src="/static/img/arrow_right.png" alt="">
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -198,6 +170,7 @@
                 </div>
             </form>
         </div>
+
         <div id="overlay"></div>
     </div>
 </template>
@@ -208,10 +181,14 @@
         data () {
             return {
 
-            }
-        },
-        created () {
+                refreshData: 2,
+                timeOnLed: 8,
+                updatePhoto: 8,
+                //Время старта
+                startLed: 19,
 
+
+            };
         },
         mounted: function () {
             console.log('mounted')
@@ -232,6 +209,18 @@
                 });
             });
         },
-        methods: {}
+        methods: {
+            updateConfig: function(){
+                const path = `http://lerts91.fvds.ru/api/update-sensors`;
+                var data = [this.refreshData, this.timeOnLed, this.updatePhoto, this.startLed];
+                const str = JSON.stringify(data);
+                axios.post(path, str)
+                            .then((response) => {
+                        console.log(response);
+                }).catch((error) => {
+                        console.log(error);
+                });
+            }
+        }
     }
 </script>

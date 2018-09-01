@@ -73,6 +73,53 @@
                 </div>
             </div>
         </section>
+
+        <div class="modal" id="modal">
+            <div class="close_modal"><img src="img/close_modal.png" alt=""></div>
+            <div class="title"><span>Уровень PH</span></div>
+            <form>
+                <div class="modal_content">
+                    <div class="element">
+                        <span>Показатель:</span>
+                        <input type="text" name="Показатель" required>
+                    </div>
+                    <div class="element">
+                        <span>Устройство:</span>
+                        <div class="sort_select">
+                            <div class="sort_option" data-custom="Device1">
+                                <span class="text">Устройство 1</span>
+                                <span class="arrow"><img src="img/select_button.png" alt=""></span>
+                            </div>
+                            <ul class="sort_options">
+                                <li data-custom="Device1">Устройство 1</li>
+                                <li data-custom="Device2">Устройство 2</li>
+                                <li data-custom="Device3">Устройство 3</li>
+                                <li data-custom="Device4">Устройство 4</li>
+                                <li data-custom="Device4">Устройство 5</li>
+                                <li data-custom="Device4">Устройство 6</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="element">
+                        <input type="submit" class="add_table" value="Добавить">
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        <div class="modal" id="modal_comment">
+            <div class="close_modal"><img src="img/close_modal.png" alt=""></div>
+            <div class="title"><span>Комментарий</span></div>
+            <form>
+                <div class="modal_content">
+                    <div class="element">
+                        <textarea name="Комментарий" cols="30" rows="10" required placeholder="Введите комментарий"></textarea>
+                    </div>
+                    <input type="submit" class="add_table" value="Добавить">
+                </div>
+            </form>
+        </div>
+
         <div id="overlay"></div>
     </div>
 </template>
@@ -80,6 +127,7 @@
 
 <script>
     import axios from 'axios'
+
     export default{
         name: 'device-list',
         data () {
@@ -93,10 +141,11 @@
         },
         created: function () {
 
+
             const path = `http://lerts91.fvds.ru/api/device`;
             console.log("created");
             axios.get(path).then(response => {
-                console.log(response.data)
+//                console.log(response.data)
                 this.devices = response.data
             }).
                 catch(error => {
@@ -118,6 +167,13 @@
                         $('[data-row="row_' + i + '"]').height(max_col_height);
                     }
                 });
+            });
+
+            $('#slide_left').click(function() {
+                console.log("click left");
+                $('#table_content').animate({
+                    scrollLeft: '+=231'
+                }, 600);
             });
 
         },
