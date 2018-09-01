@@ -67,7 +67,7 @@
                         <!--<input type="text" name="Показатель">-->
                     <!--</div>-->
                     <div class="element">
-                        <input type="submit" class="add_table" value="Обновить" :click="updateConfig()" style="height: 50px;">
+                        <input type="submit" class="add_table" value="Обновить" v-on:click="updateConfig()" style="height: 50px;">
                     </div>
 
                 </div>
@@ -212,14 +212,15 @@
         methods: {
             updateConfig: function(){
                 const path = `http://lerts91.fvds.ru/api/update-sensors`;
-                var data = [this.refreshData, this.timeOnLed, this.updatePhoto, this.startLed];
+                var data = {data: {'refreshData': this.refreshData, 'timeOnLed': this.timeOnLed, 'updatePhoto':this.updatePhoto, 'startLed':this.startLed}};
+                console.log(data)
                 const str = JSON.stringify(data);
-                axios.post(path, str)
-                            .then((response) => {
-                        console.log(response);
-                }).catch((error) => {
+                console.log(str)
+                axios.post(path, data).then(response => {
+                }).
+                    catch(error => {
                         console.log(error);
-                });
+                })
             }
         }
     }
