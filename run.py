@@ -44,7 +44,7 @@ def random_number():
 @app.route('/api/update-sensors',  methods=['POST'])
 def updateSensors():
     f = open('settings.txt', 'w+')
-    data = json.loads(request.data)
+    data = json.loads(request.data.decode('utf-8'))
     keys = data.keys
     print(type(keys))
     for key, val in data.items():
