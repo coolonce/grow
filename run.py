@@ -78,6 +78,13 @@ def devices():
 @app.route('/api/sendData', methods=['POST'])
 def getDataInOrange():
 	data = request.data
+	sensor_data = models.Data
+	#device_id = 1 = data['device_id']
+	for sensor in data['sensors']:	
+		sensor_data.device_id = 1
+		sensor_data.sensor_id = sensor.id
+		sensor_data.data = sensor.data
+		sensor_data.save()
 	return "Server"
 
 @app.route('/api/sensor', methods=['POST', 'GET'])
