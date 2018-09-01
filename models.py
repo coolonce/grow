@@ -82,11 +82,13 @@ class Data(db.Model):
     data = db.Column(db.Float)
     date_add = db.Column(db.DateTime)
 
-	@staticmethod
-	def save():
-		db.session.add(this)
-		db.session.commit()
-	
+#    def __init__(self):
+ #       return self
+
+#    @staticmethod
+    def save(self):
+        db.session.add(self)
+        db.session.commit()
     @staticmethod
     def get_all():
         return Data.query.all();
