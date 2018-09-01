@@ -1,4 +1,4 @@
-from flask import Flask, jsonify, request
+from flask import Flask, jsonify, request, render_template
 from random import *
 from flask_cors import CORS
 import requests
@@ -20,14 +20,17 @@ models.db.init_app(app)
 @app.route('/',defaults={'path': ''})
 @app.route('/<path:path>')
 def catch_all(path):
-    if app.debug:
-        return requests.get('http://localhost:8080/{}'.format(path)).text
+#    return "<h1>Temlate</h1>"
+#    if app.debug:
+#       return requests.get('http://localhost:8080/{}'.format(path)).text
     return render_template("index.html")
 
 
 
 
-
+#@app.route('/')
+#def hello():
+#    return "<h1>Hellooooo ept</h3>"
 
 
 
@@ -49,8 +52,6 @@ def updateSensors():
         sett = key+":"+str(val)+"\r\n"
         f.write(sett)
     return "www"
-    
-    
 
 @app.route('/api/device', methods=['POST', 'GET'])
 def devices():
@@ -78,7 +79,7 @@ def devices():
 def getDataInOrange():
 	data = request.data
 	return "Server"
-		
+
 @app.route('/api/sensor', methods=['POST', 'GET'])
 def sensors():
     if request.method == "GET":
@@ -132,4 +133,4 @@ def getDataAll(device_id, sensor_id):
     return jsonify(results)
 
 if __name__=="__main__":
-    app.run(host='0.0.0.0', port=5000, debug=0)
+    app.run(host='0.0.0.0',port=5000, debug=1)
