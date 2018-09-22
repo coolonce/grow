@@ -31,7 +31,9 @@ class Device(db.Model):
     def save(self):
         db.session.add(self)
         db.session.commit()
-
+    @staticmethod
+    def get(id):
+        return Device.query.filter_by(id=id).first()
     @staticmethod
     def get_all():
         return Device.query.all()
