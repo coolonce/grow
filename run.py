@@ -75,6 +75,15 @@ def devices():
     else:
         return "error"
 
+@app.route('/api/device/checkver/<int:device_id>', methods=['GET'])
+def checkVerPo(device_id):
+    device = models.Device.get(device_id)
+    obj = {
+        'ver': device.version_po
+    }
+    return jsonify(obj)
+
+
 @app.route('/api/sendData', methods=['POST'])
 def getDataInOrange():
     data = json.loads(request.data.decode('utf-8'))
