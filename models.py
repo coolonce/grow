@@ -25,13 +25,15 @@ class Device(db.Model):
     sensors = db.relationship('Sensor', secondary=sensorInDevice, lazy='subquery',
                               backref=db.backref('devices', lazy=True))
 
-    def __init__(self, name):
-        self.name = name
+#    def __init__(self, name):
+#        self.name = name
 
     def save(self):
         db.session.add(self)
         db.session.commit()
-
+    @staticmethod
+    def get(id):
+        return Device.query.filter_by(id=id).first()
     @staticmethod
     def get_all():
         return Device.query.all()
@@ -82,6 +84,13 @@ class Data(db.Model):
     data = db.Column(db.Float)
     date_add = db.Column(db.DateTime)
 
+#    def __init__(self):
+ #       return self
+
+#    @staticmethod
+    def save(self):
+        db.session.add(self)
+        db.session.commit()
     @staticmethod
     def get_all():
         return Data.query.all();

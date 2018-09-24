@@ -1,4 +1,4 @@
-from flask import Flask, jsonify, request, render_template
+from flask import Flask, jsonify, request, render_template, send_file
 from random import *
 from flask_cors import CORS
 import requests
@@ -20,18 +20,18 @@ models.db.init_app(app)
 @app.route('/',defaults={'path': ''})
 @app.route('/<path:path>')
 def catch_all(path):
-    if app.debug:
-        return requests.get('0.0.0.0:81/{}'.format(path)).text
     return render_template("index.html")
 
 
 
 
+#@app.route('/')
+#def hello():
+#    return "<h1>Hellooooo ept</h3>"
 
-@app.route('/')
-def home():
-    return "Start page"
-
+@app.route('/api/latest')
+def getLatestPo():
+    return send_file('main.ino')
 
 @app.route('/api/random')
 def random_number():
@@ -43,7 +43,7 @@ def random_number():
 @app.route('/api/update-sensors',  methods=['POST'])
 def updateSensors():
     f = open('settings.txt', 'w+')
-    data = json.loads(request.data)
+    data = json.loads(request.data.decode('utf-8'))
     keys = data.keys
     print(type(keys))
     for key, val in data.items():
@@ -51,8 +51,6 @@ def updateSensors():
         sett = key+":"+str(val)+"\r\n"
         f.write(sett)
     return "www"
-    
-    
 
 @app.route('/api/device', methods=['POST', 'GET'])
 def devices():
@@ -74,7 +72,37 @@ def devices():
         response.status_code = 200
         return response
     else:
-        return "error"
+        device = models.Device()
+        device.name_owner = 'newCreate'
+        device.version_po
+        if device.save():
+            return jsonify({'message':'create Device'})
+        
+
+@app.route('/api/device/checkver/<int:device_id>', methods=['GET'])
+def checkVerPo(device_id):
+    device = models.Device.get(device_id)
+    obj = {
+        'ver': device.version_po
+    }
+    return jsonify(obj)
+
+
+@app.route('/api/sendData', methods=['POST'])
+def getDataInOrange():
+    data = json.loads(request.data.decode('utf-8'))
+    if len(data) > 0:
+        sensor_data = models.Data()
+        #device_id = 1 = data['device_id']
+        print(data)
+        for sensor in data["sensors"]:
+            print(sensor)
+            sensor_data.device_id = 1
+            sensor_data.sensor_id = sensor['id']
+            sensor_data.data = sensor['data'];
+            sensor_data.save()
+        return "Server"
+    return "none"
 
 @app.route('/api/sensor', methods=['POST', 'GET'])
 def sensors():
@@ -128,5 +156,5 @@ def getDataAll(device_id, sensor_id):
         results.append(obj)
     return jsonify(results)
 
-if __name__ == "__main__":
-    app.run(host='0.0.0.0', port=81)
+if __name__=="__main__":
+    app.run(host='0.0.0.0',port=5000, debug=True)
