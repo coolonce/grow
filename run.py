@@ -27,7 +27,13 @@ def catch_all(path):
 
 #@app.route('/')
 #def hello():
-#    return "<h1>Hellooooo ept</h3>"
+#    return "<h1>Hellooooo ept</h3>
+@app.route('/api/addip/<string:ip>',  methods=['GET'])
+def SaveIpDevice(ip):
+    with open('ips.txt', 'a') as ips_file:
+        ips_file.write(ip+"\r\n")
+        ips_file.close()
+    return jsonify({'message': True})
 
 @app.route('/api/latest')
 def getLatestPo():
