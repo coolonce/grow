@@ -12,6 +12,10 @@ sensor_date = db.Table('sensor_data',
                        db.Column('device_id', db.Integer, db.ForeignKey('devices.id')),
                        db.Column('sensor_id', db.Integer, db.ForeignKey('sensors.id'))
                        )
+settings_data = db.Table('settings',
+                       db.Column('device_id', db.Integer, db.ForeignKey('devices.id')),
+                       db.Column('sensor_id', db.Integer, db.ForeignKey('sensors.id'))
+                       )					   
 
 
 class Device(db.Model):
@@ -108,13 +112,14 @@ class Data(db.Model):
 		
 class Settings(db.model)
 	__tablename__ = 'settings'
+	__table_args__ = {'extend_existing': True}	
 	id = db.Column(db.Integer, primary_key=True)
-    device_id = db.Column(db.Integer)
-    sensor_id = db.Column(db.Integer)
+	device_id = db.Column(db.Integer)
+	sensor_id = db.Column(db.Integer)
 	settings = db.Column(db.Integer)
 	
 	def save(self):
-        db.session.add(self)
-        db.session.commit()
+		db.session.add(self)
+		db.session.commit()
 	def get(did, sid):
-        return Settings.query.filter_by(device_id=did)filter_by(sensor_id=sid).first()
+		return Settings.query.filter_by(device_id=did)filter_by(sensor_id=sid).first()
