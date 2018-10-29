@@ -10,6 +10,7 @@ app = Flask(__name__,
             template_folder="./dist",
             instance_relative_config=True)
 
+##Вынести, а то как лох			
 app.config['SQLALCHEMY_DATABASE_URI'] = "mysql://root:root@localhost/grow"
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
@@ -22,12 +23,6 @@ models.db.init_app(app)
 def catch_all(path):
     return render_template("index.html")
 
-
-
-
-#@app.route('/')
-#def hello():
-#    return "<h1>Hellooooo ept</h3>
 @app.route('/api/addip/<string:ip>',  methods=['GET'])
 def SaveIpDevice(ip):
     with open('ips.txt', 'a') as ips_file:
@@ -46,6 +41,8 @@ def random_number():
     }
     return jsonify(response)
 
+	
+	## втф не помню зачем писал. 
 @app.route('/api/update-sensors',  methods=['POST'])
 def updateSensors():
     f = open('settings.txt', 'w+')
@@ -149,6 +146,7 @@ def getData(device_id, sensor_id):
         }
         results.append(obj)
     return jsonify(results)
+#Получение всех данных
 @app.route('/api/data_all/<int:device_id>/<int:sensor_id>')
 def getDataAll(device_id, sensor_id):
     data = models.Data.get_sensor_data(device_id, sensor_id)
@@ -161,6 +159,26 @@ def getDataAll(device_id, sensor_id):
         }
         results.append(obj)
     return jsonify(results)
-
+#Изменение и добавление настроек датчиков у устройства
+@app.route('/api/settings/<int:device_id>/<int:sensor_id>', methods=['POST', 'GET'])
+def changeSettings(device_id, sensor_id):
+	if request.method == "GET" and isint(device_id) and isint(sensor_id):
+		set = models.Settings.get(device_id, sensor_id)
+		obj = {
+			'settings': set.settings
+		}
+		return jsonify(obj)
+	elif request.method == "POST" and isint(device_id) and isint(sensor_id):
+		set = models.Settings.get(device_id, sensor_id)
+		data = json.loads(request.data.decode('utf-8'))
+		if len(data) > 0:
+			set.settings = data['settings']
+			set.save()
+			return jsonify({'message': 'ok', 'status': 200})
+		else:
+			return jsonify({'message': 'bad data', 'status': 500})
+	else:
+		return jsonify({'message': 'bad request', 'status': 500})
+		
 if __name__=="__main__":
     app.run(host='0.0.0.0',port=5000, debug=True)

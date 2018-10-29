@@ -104,3 +104,17 @@ class Data(db.Model):
     def get_sensor_data_end(device_id, sensor_id):
         data = Data.query.filter_by(device_id=device_id, sensor_id=sensor_id).order_by(desc(Data.date_add)).limit(1)
         return data
+
+		
+class Settings(db.model)
+	__tablename__ = 'settings'
+	id = db.Column(db.Integer, primary_key=True)
+    device_id = db.Column(db.Integer)
+    sensor_id = db.Column(db.Integer)
+	settings = db.Column(db.Integer)
+	
+	def save(self):
+        db.session.add(self)
+        db.session.commit()
+	def get(did, sid):
+        return Settings.query.filter_by(device_id=did)filter_by(sensor_id=sid).first()
