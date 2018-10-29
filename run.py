@@ -80,9 +80,9 @@ def devices():
     else:
         device = models.Device()
         device.name_owner = 'newCreate'
-        device.version_po
-        if device.save():
-            return jsonify({'message':'create Device'})
+        device.version_po = '0.0001'
+        device.save()
+        return jsonify({'message':'create Device', 'id': device.id, 'version': '0.0001'})
         
 
 @app.route('/api/device/checkver/<int:device_id>', methods=['GET'])
