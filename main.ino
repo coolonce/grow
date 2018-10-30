@@ -85,7 +85,7 @@ void loop() {
     Serial.print("},{\"id\":9, \"data\":");
     Serial.print(pullDataLvlWater());
     Serial.print("} ], \"device_id\":");
-	Serial.print(ID)
+	Serial.print(ID);
 	Serial.println("}\0");
     //clapansActivate1();
     //clapansActivate2();
