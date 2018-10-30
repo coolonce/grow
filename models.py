@@ -113,6 +113,7 @@ class Data(db.Model):
 class Settings(db.Model):
     __tablename__ = 'settings'
     __table_args__ = {'extend_existing': True}
+
     id = db.Column(db.Integer, primary_key=True)
     device_id = db.Column(db.Integer)
     sensor_id = db.Column(db.Integer)
@@ -122,4 +123,5 @@ class Settings(db.Model):
         db.session.commit()
     def get(did, sid):
         return Settings.query.filter_by(device_id=did).filter_by(sensor_id=sid).first()
+
 
