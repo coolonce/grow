@@ -122,4 +122,3 @@ class Settings(db.Model):
         db.session.commit()
     def get(did, sid):
         return Settings.query.filter_by(device_id=did).filter_by(sensor_id=sid).first()
-
