@@ -110,17 +110,16 @@ class Data(db.Model):
         return data
 
 
-class Settings(db.model):
-	__tablename__ = 'settings'
-	__table_args__ = {'extend_existing': True}	
-	id = db.Column(db.Integer, primary_key=True)
-	device_id = db.Column(db.Integer)
-	sensor_id = db.Column(db.Integer)
-	settings = db.Column(db.Integer)
-
-	def save(self):
-		db.session.add(self)
-		db.session.commit()
-	def get(did, sid):
-		return Settings.query.filter_by(device_id=did).filter_by(sensor_id=sid).first()
+class Settings(db.Model):
+    __tablename__ = 'settings'
+    __table_args__ = {'extend_existing': True}
+    id = db.Column(db.Integer, primary_key=True)
+    device_id = db.Column(db.Integer)
+    sensor_id = db.Column(db.Integer)
+    settings = db.Column(db.Integer)
+    def save(self):
+        db.session.add(self)
+        db.session.commit()
+    def get(did, sid):
+        return Settings.query.filter_by(device_id=did).filter_by(sensor_id=sid).first()
 
