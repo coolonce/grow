@@ -84,7 +84,9 @@ void loop() {
     Serial.print(pullDataGndHmd2());
     Serial.print("},{\"id\":9, \"data\":");
     Serial.print(pullDataLvlWater());
-    Serial.println("} ]}\0");
+    Serial.print("} ], \"device_id\":");
+	Serial.print(ID)
+	Serial.println("}\0");
     //clapansActivate1();
     //clapansActivate2();
     //pompOn();
