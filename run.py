@@ -64,6 +64,7 @@ def devices():
                 'name_owner': device.name_owner,
                 'date_buy': device.date_buy,
                 'version': device.version_po,
+                'comment': device.comment,
                 'sensors': []
             }
             for sensor in device.sensors:
@@ -105,12 +106,12 @@ def checkVerPo(device_id):
 @app.route('/api/sendData', methods=['POST'])
 def getDataInOrange():
     data = json.loads(request.data.decode('utf-8'))
-    if len(data) > 0:
-        sensor_data = models.Data()
+    if len(data) > 0:        
         device_id = data['device_id']
         print(data)
         for sensor in data["sensors"]:
             print(sensor)
+            sensor_data = models.Data()
             sensor_data.device_id = device_id
             sensor_data.sensor_id = sensor['id']
             sensor_data.data = sensor['data'];
