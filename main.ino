@@ -92,7 +92,7 @@ void loop() {
   
   if(END_TIME_ON_LED + TIME_ON_LED <= millis()){
     ledToggle1();
-    ledToggle2()
+    ledToggle2();
     END_TIME_ON_LED = millis();
   }
   
