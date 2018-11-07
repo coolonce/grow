@@ -87,14 +87,11 @@ void loop() {
     Serial.print("} ], \"device_id\":");
 	Serial.print(ID);
 	Serial.println("}\0");
-    //clapansActivate1();
-    //clapansActivate2();
-    //pompOn();
     END_TIME_PULLING_DATA = millis();
   }
   
   if(END_TIME_ON_LED + TIME_ON_LED <= millis()){
-  //  ledToggle1();
+    ledToggle1();
     END_TIME_ON_LED = millis();
   }
   
@@ -104,7 +101,7 @@ void loop() {
   }
   
   if(pullDataGndHmd1() - 100 <  HUMIDITY_MIN1 && pullDataLvlWater()){
-    clapansOn1();
+    clapansOff1();
     pompOff();
   }
 
@@ -113,7 +110,7 @@ void loop() {
     pompOn();
   }
   
-  if(pullDataGndHmd2() - 100 <  HUMIDITY_MIN2&& pullDataLvlWater()){
+  if(pullDataGndHmd2() - 100 <  HUMIDITY_MIN2 && pullDataLvlWater()){
     clapansOff2();
     pompOff();
   }
