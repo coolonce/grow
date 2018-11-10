@@ -113,6 +113,7 @@ class Data(db.Model):
 class Settings(db.Model):
     __tablename__ = 'settings'
     __table_args__ = {'extend_existing': True}
+
     id = db.Column(db.Integer, primary_key=True)
     device_id = db.Column(db.Integer)
     sensor_id = db.Column(db.Integer)

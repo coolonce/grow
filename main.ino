@@ -278,6 +278,6 @@ void clapansOff1(){
 void clapansOff2(){
   pinMode(clapans2, LOW);
   clapansAct2 = 0;
-}
+} 
 
 
