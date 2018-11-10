@@ -66,8 +66,8 @@ void setup() {
   ledActivate2();
 //  sensorWaterFlowActivate();
   pompActivate();
-  clapansOn1();
-  clapansOn2();
+ // clapansOn1();
+//  clapansOn2();
   //dht.begin();
  
 }
@@ -92,26 +92,26 @@ void loop() {
   
   if(END_TIME_ON_LED + TIME_ON_LED <= millis()){
     ledToggle1();
-    ledToggle2()
+    ledToggle2();
     END_TIME_ON_LED = millis();
   }
   
-  if(pullDataGndHmd1() > HUMIDITY_MAX1 && pullDataLvlWater()){
+  if(pullDataGndHmd1() > HUMIDITY_MAX1/* && pullDataLvlWater()*/){
     clapansOn1();
     pompOn();
   }
   
-  if(pullDataGndHmd1() - 100 <  HUMIDITY_MIN1 && pullDataLvlWater()){
+  if(pullDataGndHmd1() - 100 <  HUMIDITY_MIN1 /*&& pullDataLvlWater()*/){
     clapansOff1();
     pompOff();
   }
 
-  if(pullDataGndHmd2() > HUMIDITY_MAX2 && pullDataLvlWater()){
+  if(pullDataGndHmd2() > HUMIDITY_MAX2 /*&& pullDataLvlWater()*/){
     clapansOn2();
     pompOn();
   }
   
-  if(pullDataGndHmd2() - 100 <  HUMIDITY_MIN2 && pullDataLvlWater()){
+  if(pullDataGndHmd2() - 100 <  HUMIDITY_MIN2/* && pullDataLvlWater()*/){
     clapansOff2();
     pompOff();
   }
@@ -139,7 +139,7 @@ double avergearray(int* arr, int number){
   double avg;
   long amount=0;
   if(number<=0){
-    Serial.println("Error number for the array to avraging!/n");
+ //   Serial.println("Error number for the array to avraging!/n");
     return 0;
   }
   if(number<5){   //less than 5, calculated directly statistics
@@ -179,7 +179,7 @@ int pullDataGndHmd1(){
 }
 
 int pullDataGndHmd2(){
-  return analogRead(gndHmd1);
+  return analogRead(gndHmd2);
 }
 
 
@@ -206,7 +206,7 @@ void ledActivate1(){
 }
 //Включение и выключение ленты
 void ledToggle1(){
-  Serial.println("Led");
+//  Serial.println("Led");
   if(!ledAct1)
    {
     ledAct1 = 1;
@@ -233,7 +233,7 @@ void ledActivate2(){
 }
 //Включение и выключение ленты
 void ledToggle2(){
-  Serial.println("Led");
+//  Serial.println("Led");
   if(!ledAct2)
    {
     ledAct2 = 1;
@@ -250,12 +250,12 @@ void pompActivate(){
 }
 
 void pompOn(){
-   Serial.println("popm on");
+//   Serial.println("popm on");
     pompAct = 1;
     digitalWrite(pomp, HIGH);
 }
 void pompOff(){
-   Serial.println("pomp off");
+//   Serial.println("pomp off");
   pompAct = 0;
   digitalWrite(pomp, LOW);
 }
@@ -267,7 +267,7 @@ void clapansOn1(){
   clapansAct1 = 1;
 }
 void clapansOn2(){
-  pinMode(clapans1, HIGH);
+  pinMode(clapans2, HIGH);
   clapansAct2 = 1;
 }
 
