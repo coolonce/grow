@@ -126,23 +126,19 @@ void loop() {
 
 
 void watering(){
+	static unsigned long samplingTime = millis();
 	
-	
-	//Люблю магические константы
-	if(sleepWatering + 216000000 > millis()){
-		//я мудак и хочу спать
-	}else{
-		//poliv 5 sec 
+	if(millis() - samplingTime > 10000){
 		if(endWateringTime + 5000 <= millis){
 			clapansOn1();
 			clapansOn2();
 			pompOn();
-			
-		}else{
-			endWateringTime += millis();
-			sleepWatering += millis();
+			endWateringTime = millis();
 		}
+		samplingTime=millis();
 	}
+	
+
 	
 	
 	
