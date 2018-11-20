@@ -45,7 +45,9 @@ int clapans2 = 8;
 int clapansAct2 = 0;
 
 
-
+// Для полива
+unsigned long endWateringTime = 0;
+unsigned long sleepWatering = 0;
 
 //Датчик расхода воды
 const    uint8_t  pinSensor = 2; 
@@ -61,13 +63,16 @@ volatile uint32_t END_TIME_PULLING_DATA = 0;
 
 void setup() {
   Serial.begin(9600);
+  //инициализируем датчик воды
   lvlWaterAct();
+  //Инициализация светодиодных лент
   ledActivate1();
   ledActivate2();
-//  sensorWaterFlowActivate();
+  //Инициализация помпы
   pompActivate();
- // clapansOn1();
-//  clapansOn2();
+  //инициализация клапанов
+  clapansOn1();
+  clapansOn2();
   //dht.begin();
  
 }
@@ -90,33 +95,33 @@ void loop() {
     END_TIME_PULLING_DATA = millis();
   }
   
-  if(END_TIME_ON_LED + TIME_ON_LED <= millis()){
-    ledToggle1();
-    ledToggle2();
-    END_TIME_ON_LED = millis();
-  }
-  
-  if(pullDataGndHmd1() > HUMIDITY_MAX1/* && pullDataLvlWater()*/){
-    clapansOn1();
-    pompOn();
-  }
-  
-  if(pullDataGndHmd1() - 100 <  HUMIDITY_MIN1 /*&& pullDataLvlWater()*/){
-    clapansOff1();
-    pompOff();
-  }
+  watering();
+}
 
-  if(pullDataGndHmd2() > HUMIDITY_MAX2 /*&& pullDataLvlWater()*/){
-    clapansOn2();
-    pompOn();
-  }
-  
-  if(pullDataGndHmd2() - 100 <  HUMIDITY_MIN2/* && pullDataLvlWater()*/){
-    clapansOff2();
-    pompOff();
-  }
-  
-  
+
+void watering(){
+	
+	static bool state;
+    static unsigned long time;
+	//Запускаем на 20 секунд каждые 4 часа
+    if((millis() - time) > (state ? 20000 : 14400000))
+    {
+      state = !state;
+      if(state){
+		clapansOn1();
+		clapansOn2();
+		pompOn();
+	  }else{
+		clapansOff1();
+		clapansOff2();
+		pompOff();  
+	  }
+      
+      time = millis();
+
+    }
+
+	
 }
 
 float pullPHData(){
@@ -250,14 +255,13 @@ void pompActivate(){
 }
 
 void pompOn(){
-//   Serial.println("popm on");
     pompAct = 1;
     digitalWrite(pomp, HIGH);
 }
 void pompOff(){
-//   Serial.println("pomp off");
-  pompAct = 0;
-  digitalWrite(pomp, LOW);
+	//Serial.println("pomp off");
+	pompAct = 0;
+	digitalWrite(pomp, LOW);
 }
 
 
