@@ -93,54 +93,33 @@ void loop() {
 	Serial.print(ID);
 	Serial.println("}\0");
     END_TIME_PULLING_DATA = millis();
-  }
-  
-//  if(END_TIME_ON_LED + TIME_ON_LED <= millis()){
-//    ledToggle1();
-//    ledToggle2();
-//    END_TIME_ON_LED = millis();
-//  }
-  
- // if(pullDataGndHmd1() > HUMIDITY_MAX1 && pullDataLvlWater()){
-//    clapansOn1();
-//    pompOn();
-//  }
-  
-//  if(pullDataGndHmd1() - 100 <  HUMIDITY_MIN1 && pullDataLvlWater()){
-//    clapansOff1();
-//    pompOff();
-//  }
-
-//  if(pullDataGndHmd2() > HUMIDITY_MAX2 && pullDataLvlWater()){
-//    clapansOn2();
- //   pompOn();
-//  }
-  
-//  if(pullDataGndHmd2() - 100 <  HUMIDITY_MIN2 && pullDataLvlWater()){
-//    clapansOff2();
-//   pompOff();
-//  }
-  
+  }  
   watering();
 }
 
 
 void watering(){
-	static unsigned long samplingTime = millis();
 	
-	if(millis() - samplingTime > 10000){
-		if(endWateringTime + 5000 <= millis){
-			clapansOn1();
-			clapansOn2();
-			pompOn();
-			endWateringTime = millis();
-		}
-		samplingTime=millis();
-	}
-	
+	static bool state;
+    static unsigned long time;
+	//Запускаем на 20 секунд каждые 4 часа
+    if((millis() - time) > (state ? 20000 : 14400000))
+    {
+      state = !state;
+      if(state){
+		clapansOn1();
+		clapansOn2();
+		pompOn();
+	  }else{
+		clapansOff1();
+		clapansOff2();
+		pompOff();  
+	  }
+      
+      time = millis();
 
-	
-	
+    }
+
 	
 }
 
