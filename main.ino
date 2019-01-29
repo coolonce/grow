@@ -4,6 +4,7 @@
 #include "Sensor.h"
 #include "string.h"
 #include "Printer.h"
+#include "LowPower.h"
 
 //Датчик влажности почвы
 int gndHmd1 = A1;
@@ -61,6 +62,7 @@ void setup() {
 }
 
 void loop() {
+	LowPower.powerDown(SLEEP_8S, ADC_OFF, BOD_OFF);
 	if ((END_TIME_PULLING_DATA + SEND_DATA_TIME) < millis() || END_TIME_PULLING_DATA > millis()) {
 		//Формируем строку
 		//из-за того, что немного запутался с id устройств заебенил сюда константы
