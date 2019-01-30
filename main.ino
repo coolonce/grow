@@ -92,7 +92,8 @@ void loop() {
 	Serial.print(ID);
 	Serial.println("}\0");
     END_TIME_PULLING_DATA = millis();
-  }  
+  }
+  
   watering();
   */
 }
@@ -116,4 +117,5 @@ void watering(){
       time = millis();
     }
 }
+
 

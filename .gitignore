@@ -4,7 +4,10 @@ bin-release/
 [Oo]bj/
 [Bb]in/
 
-
+*.bcg
+*.txt
+*.copy
+*.pyc
 backend/
 __pycache__
 dist/
