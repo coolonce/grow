@@ -5,16 +5,7 @@ Sensor::Sensor(int type) {
 }
 
 void Sensor::initialize() {
-	//��� ������������� ������������ ����, ���� � �������
-	if (sensorType>=4 && sensorType<=8) {
-		pinMode(sensorType, HIGH);
-	}
-	//��� ��������� ������ ����
-	else if (sensorType == 9) {
-		pinMode(sensorType, INPUT_PULLUP);
-	}
-	//��� �������� ��������� �����
-	//if(�����)
+	pinMode(sensorType, HIGH);
 }
 
 void Sensor::activate() {
@@ -38,13 +29,5 @@ void Sensor::deactivate() {
 }
 
 int Sensor::getData() {
-	//��� ������ ����
-	if (sensorType == 9) {
-		return !digitalRead(sensorType);
-	}
-	//��� ��������� �����
-	//��� � �� ���� ����������� ������ �������, ����� ����� ��� ���������
-	else {  
 		return analogRead(sensorType);
-	}
 }

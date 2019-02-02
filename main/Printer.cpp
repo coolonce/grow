@@ -4,11 +4,11 @@ void Printer::addSensorData(int sensorId, float sensorData) {
   
 	if (msg == "") {
 		msg += "{\"sensors\": [";
-		msg += "{\"id\":" + String(sensorId) + ", \"data\":" + String(sensorData) + "}";
+		msg += "{\"id\":" + String(sensorId) + ", \"data\":" + String(sensorData, 2) + "}";
 	}
 	else {
 		msg += ",";
-		msg += "{\"id\":" + String(sensorId) + ", \"data\":" + String(sensorData) + "}";
+		msg += "{\"id\":" + String(sensorId) + ", \"data\":" + String(sensorData, 2) + "}";
 	}	
 }
 

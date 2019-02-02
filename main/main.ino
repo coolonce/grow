@@ -11,9 +11,7 @@ int gndHmd1 = A1;
 int gndHmd2 = A2;
 Sensor HumiditySensor1(gndHmd1);
 Sensor HumiditySensor2(gndHmd2);
-//Уровень воды
-const uint8_t lvlWater = 9;
-Sensor WaterLevelSensor(lvlWater);
+
 //Светодиодная лента
 //1Линия
 int ledLenta1 = 4;
@@ -47,9 +45,7 @@ volatile uint32_t END_TIME_PULLING_DATA = 0;
          uint32_t END_TIME_ON_LED = 0;
 
 void setup() {
-  Serial.begin(9600);
-  //инициализируем датчик воды
-  WaterLevelSensor.initialize();
+  Serial.begin(9600);  
   //Инициализация светодиодных лент
   LedSensor1.initialize();
   LedSensor2.initialize();  
@@ -63,20 +59,20 @@ void setup() {
 
 void loop() {
 	LowPower.powerDown(SLEEP_8S, ADC_OFF, BOD_OFF);
-	if ((END_TIME_PULLING_DATA + SEND_DATA_TIME) < millis() || END_TIME_PULLING_DATA > millis()) {
+//	if ((END_TIME_PULLING_DATA + SEND_DATA_TIME) < millis() || END_TIME_PULLING_DATA > millis()) {
 		//Формируем строку
 		//из-за того, что немного запутался с id устройств заебенил сюда константы
 		printer.addSensorData(2, dht.readTemperature());
 		printer.addSensorData(3, dht.readHumidity());
 		printer.addSensorData(7, HumiditySensor1.getData());
 		printer.addSensorData(8, HumiditySensor2.getData());
-		printer.addSensorData(9, WaterLevelSensor.getData());
 		printer.addSensorId(ID);
 		//Выводим строку в сериал порт
-		Serial.print(printer.printToSerial());
+		Serial.println(printer.printToSerial());
 		END_TIME_PULLING_DATA = millis();
-	}
+//	}
 	watering();
+ delay(250);
 	/*
     Serial.print("{\"sensors\": [{\"id\":2, \"data\":");
     Serial.print(dht.readTemperature());
