@@ -1,6 +1,6 @@
-# grow
+# gg
 
-> smart grow
+> A Vue.js project
 
 ## Build Setup
 

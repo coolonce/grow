@@ -10,7 +10,6 @@ app = Flask(__name__,
             template_folder="./dist",
             instance_relative_config=True)
 
-##Вынести, а то как лох			
 app.config['SQLALCHEMY_DATABASE_URI'] = "mysql://root:root@localhost/grow"
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
@@ -41,8 +40,6 @@ def random_number():
     }
     return jsonify(response)
 
-	
-	## втф не помню зачем писал. 
 @app.route('/api/update-sensors',  methods=['POST'])
 def updateSensors():
     f = open('settings.txt', 'w+')
@@ -55,6 +52,7 @@ def updateSensors():
         f.write(sett)
     return "www"
 
+
 @app.route('/api/device', methods=['POST', 'GET'])
 def devices():
     if request.method == "GET":
@@ -66,6 +64,7 @@ def devices():
                 'name_owner': device.name_owner,
                 'date_buy': device.date_buy,
                 'version': device.version_po,
+                'comment': device.comment,
                 'sensors': []
             }
             for sensor in device.sensors:
@@ -77,10 +76,23 @@ def devices():
     else:
         device = models.Device()
         device.name_owner = 'newCreate'
-        device.version_po
-        if device.save():
-            return jsonify({'message':'create Device'})
-        
+        device.version_po = '0.0001'
+        device.save()
+        return jsonify({'message':'create Device', 'id': device.id, 'version': '0.0001'})
+
+@app.route('/api/device/<int:device_id>', methods=['POST'])
+def deviceUpdate(device_id):
+    if(not device_id == 0 and request.method == "POST"):
+        data = json.loads(request.data.decode('utf-8'))
+        device = models.Device().get(device_id)
+        if('comment' in data and not data['comment'] == ''):
+            device.comment = data['comment']
+        if('name' in data and not data['name'] == ''):
+            device.name_owner = data['name']
+        device.save()
+        return jsonify({'message':'update', 'code': 200})
+    else:
+        return jsonify({'message':'error update', 'code': 500})
 
 @app.route('/api/device/checkver/<int:device_id>', methods=['GET'])
 def checkVerPo(device_id):
@@ -94,18 +106,18 @@ def checkVerPo(device_id):
 @app.route('/api/sendData', methods=['POST'])
 def getDataInOrange():
     data = json.loads(request.data.decode('utf-8'))
-    if len(data) > 0:
-        sensor_data = models.Data()
-        #device_id = 1 = data['device_id']
+    if len(data) > 0:        
+        device_id = data['device_id']
         print(data)
         for sensor in data["sensors"]:
             print(sensor)
-            sensor_data.device_id = 1
+            sensor_data = models.Data()
+            sensor_data.device_id = device_id
             sensor_data.sensor_id = sensor['id']
             sensor_data.data = sensor['data'];
             sensor_data.save()
-        return "Server"
-    return "none"
+        return jsonify({'message':'data send', 'code': 200})
+    return jsonify({'message':'dont send data', 'code': 500})
 
 @app.route('/api/sensor', methods=['POST', 'GET'])
 def sensors():
@@ -146,7 +158,7 @@ def getData(device_id, sensor_id):
         }
         results.append(obj)
     return jsonify(results)
-#Получение всех данных
+
 @app.route('/api/data_all/<int:device_id>/<int:sensor_id>')
 def getDataAll(device_id, sensor_id):
     data = models.Data.get_sensor_data(device_id, sensor_id)
@@ -159,26 +171,27 @@ def getDataAll(device_id, sensor_id):
         }
         results.append(obj)
     return jsonify(results)
-#Изменение и добавление настроек датчиков у устройства
+
 @app.route('/api/settings/<int:device_id>/<int:sensor_id>', methods=['POST', 'GET'])
 def changeSettings(device_id, sensor_id):
-	if request.method == "GET" and isint(device_id) and isint(sensor_id):
-		set = models.Settings.get(device_id, sensor_id)
-		obj = {
-			'settings': set.settings
-		}
-		return jsonify(obj)
-	elif request.method == "POST" and isint(device_id) and isint(sensor_id):
-		set = models.Settings.get(device_id, sensor_id)
-		data = json.loads(request.data.decode('utf-8'))
-		if len(data) > 0:
-			set.settings = data['settings']
-			set.save()
-			return jsonify({'message': 'ok', 'status': 200})
-		else:
-			return jsonify({'message': 'bad data', 'status': 500})
-	else:
-		return jsonify({'message': 'bad request', 'status': 500})
-		
+    if request.method == "GET" and not device_id == 0 and not sensor_id == 0:
+        set = models.Settings.get(device_id, sensor_id)
+        print(set)
+        obj = {
+              'settings': set.settings
+         }
+        return jsonify(obj)
+    elif request.method == "POST" and not device_id == 0 and not sensor_id == 0:
+        set = models.Settings.get(device_id, sensor_id)
+        data = json.loads(request.data.decode('utf-8'))
+        if len(data) > 0:
+            set.settings = data['settings']
+            set.save()
+            return jsonify({'message': 'ok', 'status': 200})
+        else:
+            return jsonify({'message': 'bad data', 'status': 500})
+    else:
+        return jsonify({'message': 'bad request', 'status': 500})
+
 if __name__=="__main__":
     app.run(host='0.0.0.0',port=5000, debug=True)
