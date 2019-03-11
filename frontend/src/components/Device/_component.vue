@@ -8,8 +8,8 @@
 	            <div class="title">
 	                <h1 class="h1">Статистика: <span>{{ device.label }} ({{ device.name_owner }})</span></h1>
 	                <div class="close_statistic" @click="back">
-	                    <img class="normal" src="/img/close_statistic.png" alt="">
-	                    <img class="hover" src="/img/close_statistic_hover.png" alt="">
+	                    <img class="normal" src="/static/img/close_statistic.png" alt="">
+	                    <img class="hover" src="/static/img/close_statistic_hover.png" alt="">
 	                </div>
 	            </div>
 	        </div>
@@ -75,8 +75,8 @@
 	                            	{{ getSensorValue(sensor, date) }}
 	                            </div>
 	                            <div class="row">
-	                                <a href="/img/img1.jpg" data-fancybox="gallery" class="image_overlay">
-	                                    <img src="/img/img1.jpg" alt="">
+	                                <a href="/static/img/img1.jpg" data-fancybox="gallery" class="image_overlay">
+	                                    <img src="/static/img/img1.jpg" alt="">
 	                                </a>
 	                            </div>
 	                            <div class="row">
@@ -86,7 +86,7 @@
 	                            </div>
 	                        </div>
 	                        <button type="button" class="arrow slide_right">
-	                        	<img src="/img/arrow_right.png" alt="">
+	                        	<img src="/static/img/arrow_right.png" alt="">
 	                        </button>
 	                    </div>
 	                </div>
@@ -99,8 +99,13 @@
 <script type="text/javascript">
 	import Device from '../../class/Device';
 	import { DateTime } from 'luxon';
-
+	import Loader from '../Loader';
+	import Selector from '../Selector';
 	export default {
+		components:{
+			Loader,
+			Selector
+		},
 		props: {
 			id: {
 				default: 0

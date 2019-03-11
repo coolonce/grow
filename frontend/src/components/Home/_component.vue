@@ -21,29 +21,29 @@
 	                        <div v-for="device in devices" class="column">
 	                            <div class="row">
 	                                <button type="button" class="button top" @click="showName(device)">
-	                                	<img src="/img/comment_img.png" alt="">
+	                                	<img src="/static/img/comment_img.png"id="comment_img" alt="">
 	                                </button>
 	                                <a href="javascript:void(0)" class="button bottom" @click.prevent="show(device)">
-	                                	<img src="/img/statistics_img.png" alt="">
+	                                	<img src="/static/img/statistics_img.png" id="statistics_img" alt="">
 	                                </a> {{ device.label }} ({{ device.name_owner }})
 	                            </div>
 	                            <div v-for="sensor in sensors" class="row text_center" >
 	                            	{{ getSensorValue(device, sensor) }}
 	                            </div>
 	                            <div class="row">
-	                                <a href="/img/img1.jpg" data-fancybox="gallery" class="image_overlay">
-	                                    <img src="/img/img1.jpg" alt="">
+	                                <a href="/static/img/static/img1.jpg" data-fancybox="gallery" class="image_overlay">
+	                                    <img src="/static/img/img1.jpg" id="img1" alt="">
 	                                </a>
 	                            </div>
 	                            <div class="row">
 	                                <button type="button" class="button top" @click="showComment(device)">
-	                                	<img src="/img/comment_img.png" alt="">
+	                                	<img src="/static/img/comment_img.png" id="comment_img" alt="">
 	                                </button>
 	                                <p class="comment_text">{{ device.comment }}</p>
 	                            </div>
 	                        </div>
 	                        <button class="arrow slide_right">
-	                        	<img src="/img/arrow_right.png" alt="">
+	                        	<img src="/static/img/arrow_right.png" id="arrow_right" alt="">
 	                        </button>
 	                    </div>
 	                </div>

@@ -4,6 +4,7 @@ const utils = require('./utils')
 const config = require('../config')
 const vueLoaderConfig = require('./vue-loader.conf')
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 function resolve (dir) {
   return path.join(__dirname, '..', dir)
@@ -46,6 +47,16 @@ module.exports = {
         loader: 'vue-loader',
         options: vueLoaderConfig
       },
+	  {
+            test: /\.(png|jp(e*)g|svg)$/,  
+            use: [{
+                loader: 'url-loader',
+                options: { 
+                    limit: 8000, // Convert images < 8kb to base64 strings
+                    name: utils.assetsPath('img/[name].[hash:7].[ext]')
+                } 
+            }]
+        },
       {
         test: /\.js$/,
         loader: 'babel-loader',
@@ -54,6 +65,14 @@ module.exports = {
       {
         test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
         loader: 'url-loader',
+        options: {
+          limit: 10000,
+          name: utils.assetsPath('img/[name].[hash:7].[ext]')
+        }
+      },
+	  {
+        test: /\.(png|jpg|svg|ttf|eot|woff|woff2|gif)$/,
+        loader: 'file-loader',
         options: {
           limit: 10000,
           name: utils.assetsPath('img/[name].[hash:7].[ext]')
@@ -91,6 +110,10 @@ module.exports = {
     child_process: 'empty'
   },
   plugins: [
-    new ExtractTextPlugin('style.css')
+    new ExtractTextPlugin('style.css'),
+	 new CopyWebpackPlugin([{
+        from: './src/img',
+        to: './static/img'
+      },])
   ]	
 }
