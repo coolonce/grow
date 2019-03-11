@@ -118,7 +118,7 @@ export default class Api {
 	setName(device, { name }) {
 
 		const device_id = device.id;
-		const comment = device.comment;
+		const comment = device.name_owner;
 
 		return this.post('/device/' + device_id, { name, comment })
 			.then(response => {
@@ -133,7 +133,7 @@ export default class Api {
 	setComment(device, { comment }) {
 
 		const device_id = device.id;
-		const name = device.name_owner;
+		const name = device.comment;
 		
 		return this.post('/device/' + device_id, { name, comment })
 			.then(response => {
@@ -146,4 +146,9 @@ export default class Api {
 		return Promise.resolve();
 	}
 
+	setSettings(device, data){
+		var request  = {
+						
+		}
+	}
 };

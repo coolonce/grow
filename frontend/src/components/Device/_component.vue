@@ -19,17 +19,17 @@
 	        <div class="container">
 	            <div class="statistics_change">
 	                <div class="element">
-	                    <span>Ч-сть обновления данных:</span>
-	                    <selector v-model="filter.update" :options="dictionary.update"></selector>
+	                    <span>Ч-та освещения:</span>
+	                    <selector v-model="filter.countLumen" :options="dictionary.countLumen"></selector>
+	                </div>
+					<div class="element">
+	                    <span>Начало включения света:</span>
+	                    <selector v-model="filter.timeLumen" :options="dictionary.timeLumen"></selector>
 	                </div>
 	                <div class="element">
-	                    <span>Ч-сть полива линии 1:</span>
+	                    <span>Ч-сть полива:</span>
 	                    <selector v-model="filter.line1" :options="dictionary.line"></selector>
-	                </div>
-	                <div class="element">
-	                    <span>Ч-сть полива линии 2:</span>
-	                    <selector v-model="filter.line2" :options="dictionary.line"></selector>
-	                </div>
+	                </div>	                
 	                <div class="element">
 	                    <span>Ч-сть фотографирования:</span>
 	                    <selector v-model="filter.photo" :options="dictionary.photo"></selector>
@@ -49,8 +49,9 @@
 	                <div class="element">
 	                    <span>сорт 2:</span>
 	                    <input v-model="filter.sort2" type="text">
-	                </div>
+	                </div>					
 	            </div>
+				<button type="button" class="measure" @click="saveData();">Сохранить</button>
 	        </div>
 	    </section>
 
@@ -101,7 +102,11 @@
 	import { DateTime } from 'luxon';
 	import Loader from '../Loader';
 	import Selector from '../Selector';
+	import LoadingDirective from '../../directives/loading';
 	export default {
+		directives: {
+			loading: LoadingDirective
+		},
 		components:{
 			Loader,
 			Selector
@@ -114,20 +119,23 @@
 		data() {
 			return {
 				dictionary: {
-					update: _.map(_.range(1, 6), value => {
-						return 'Показатель ' + value;
+					countLumen: _.map(_.range(1, 24), value => {
+						return value + ' ч.';
 					}),
-					line: _.map(_.range(1, 6), value => {
-						return 'Показатель ' + value;
+					line: _.map(_.range(1, 24), value => {
+						return value + ' ч.';
 					}),
 					photo: _.map(_.range(1, 6), value => {
 						return 'Показатель ' + value;
+					}),
+					timeLumen: _.map(_.range(0, 25), value => {
+						return value == 24?'Включить в 00 час': 'Включить в ' + value +' ч.';
 					})
 				},
 				filter: {
-					update: null,
+					countLumen: null,
 					line1: null,
-					line2: null,
+					timeLumen: null,
 					photo: null,
 					culture1: null,
 					culture2: null,
@@ -156,8 +164,14 @@
 			hasSensorValue(sensor, date_add) {
 				return _.findIndex(this.data, { sensor_id: sensor.id, date_add }) > -1;
 			},
+			saveData(){
+				var data = {
+					1: this.filter.countLumen,
+					10: this.filter.timeLumen
+				};
+				api.setSettings()
+			},
 			loadSensorsData() {
-
 				this.data.splice(0);
 
 				Promise.all(

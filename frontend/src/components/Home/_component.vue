@@ -14,7 +14,7 @@
 		                    	<button v-if="sensor.id==5" type="button" class="measure" @click="showIndicator('ph')">Измерить</button>
 		                    	<button v-if="sensor.id==6" type="button" class="measure" @click="showIndicator('tds')">Измерить</button>
 		                    </div>
-	                        <div class="row">Фото:</div>
+	                        <div class="row" style="min-height: 153px;">Фото:</div>
 	                        <div class="row">Комментарий:</div>
 	                    </div>
 	                    <div class="table_content table_item">
